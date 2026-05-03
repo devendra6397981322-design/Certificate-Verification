@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certificate Verification</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: linear-gradient(135deg, #1d2671, #c33764);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.container {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    width: 350px;
+    text-align: center;
+}
+input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+}
+button {
+    padding: 10px 20px;
+    background: #1d2671;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.result {
+    margin-top: 20px;
+    text-align: left;
+}
+.verified {
+    color: green;
+    font-weight: bold;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+    <h2>Certificate Verification</h2>
+
+    <input type="text" id="certId" placeholder="Enter Certificate ID">
+    <br>
+    <button onclick="verifyCert()">Verify</button>
+
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+const database = {
+    "AI-2026-DEV123": {
+        name: "Devendra Kumar",
+        course: "Artificial Intelligence Engineer",
+        date: "07/03/2026",
+        issued: "Future Skills Prime",
+        status: "Verified"
+    }
+};
+
+function verifyCert() {
+    let id = document.getElementById("certId").value;
+    let data = database[id];
+
+    if(data){
+        document.getElementById("result").innerHTML = `
+            <div class="verified">✔ Verified</div>
+            <p><b>Name:</b> ${data.name}</p>
+            <p><b>Course:</b> ${data.course}</p>
+            <p><b>Date:</b> ${data.date}</p>
+            <p><b>Issued By:</b> ${data.issued}</p>
+            <p><b>Status:</b> ${data.status}</p>
+        `;
+    } else {
+        document.getElementById("result").innerHTML = "<p style='color:red;'>❌ Invalid Certificate</p>";
+    }
+}
+</script>
+
+</body>
+</html>
